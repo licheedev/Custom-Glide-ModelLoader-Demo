@@ -30,6 +30,12 @@ public class ImageFidFetcher implements DataFetcher<InputStream> {
         mImageFid = imageFid;
     }
 
+    /**
+     * 在后台线程中调用，用于获取图片的数据流，给Glide处理
+     * @param priority
+     * @return
+     * @throws Exception
+     */
     @Override
     public InputStream loadData(Priority priority) throws Exception {
         // mImageFid有可能是来自缓存的，先从此对象获取url
