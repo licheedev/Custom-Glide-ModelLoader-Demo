@@ -102,7 +102,7 @@ public class ImageFidFetcher implements DataFetcher<InputStream> {
 
 
     /**
-     * 在Glide处理完{@link #loadData(Priority)}返回的数据后，进行清理和回收资源
+     * 在后台线程中调用，在Glide处理完{@link #loadData(Priority)}返回的数据后，进行清理和回收资源
      */
     @Override
     public void cleanup() {
