@@ -20,7 +20,7 @@ public class ImageFidFetcher implements DataFetcher<InputStream> {
 
     // 检查是否取消任务的标识
     private volatile boolean mIsCanceled;
-    
+
     private final ImageFid mImageFid;
     private Call mFetchUrlCall;
     private Call mFetchStreamCall;
@@ -32,6 +32,7 @@ public class ImageFidFetcher implements DataFetcher<InputStream> {
 
     /**
      * 在后台线程中调用，用于获取图片的数据流，给Glide处理
+     *
      * @param priority
      * @return
      * @throws Exception
@@ -50,6 +51,7 @@ public class ImageFidFetcher implements DataFetcher<InputStream> {
                 return null;
             }
             // 存储获取到的url，以供缓存使用
+            System.out.println("从网上获取" + url);
             mImageFid.setUrl(url);
         }
         if (mIsCanceled) {
@@ -62,6 +64,7 @@ public class ImageFidFetcher implements DataFetcher<InputStream> {
 
     /**
      * 获取图片fid对应的url
+     *
      * @return
      */
     private String fetchImageUrl() {
@@ -78,7 +81,7 @@ public class ImageFidFetcher implements DataFetcher<InputStream> {
         }
         return null;
     }
-    
+
     private InputStream fetchStream(String url) {
         // 缓存请求，用来及时取消连接
         mFetchStreamCall = syncGet(url);
@@ -92,6 +95,7 @@ public class ImageFidFetcher implements DataFetcher<InputStream> {
 
     /**
      * 同步的http get请求
+     *
      * @param url 要访问的url
      * @return
      */
@@ -119,6 +123,7 @@ public class ImageFidFetcher implements DataFetcher<InputStream> {
 
     /**
      * 在UI线程中调用，返回用于区别数据的唯一id
+     *
      * @return
      */
     @Override
